@@ -1,24 +1,38 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
+import { connect, Room as RoomType } from 'twilio-video';
+import Room from './Room';
 import './App.css';
 
 function App() {
+  const [identity, setIdentity] = useState('');
+  const [room, setRoom] = useState<RoomType>();
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {
+        room === undefined
+        ? <div className="lobby">
+            <input placeholder="What's your name?"/>
+            <button onClick={async () => {
+              try {
+                const response = await fetch(`https://{your-endpoint}?identity=${identity}`);
+                const data = await response.json();
+                const room = await connect(data.accessToken, {
+                  name: 'cool-room',
+                  audio: true,
+                  video: true
+                });
+            
+                setRoom(room);
+              } catch(err) {
+                console.log(err);
+              }
+            }}>Join Room</button>
+          </div>
+        : <Room room={room} returnToLobby={() => {
+            setRoom(undefined);
+          }} />
+      }
     </div>
   );
 }
