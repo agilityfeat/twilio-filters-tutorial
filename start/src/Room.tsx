@@ -27,12 +27,12 @@ function Room(props: { room: RoomType; returnToLobby: () => void; }) {
           localParticipant={true}
           participant={props.room.localParticipant} />
         {
-          remoteParticipants.map((participant) => {
+          remoteParticipants.map((participant) =>
             <Participant
               key={participant.identity}
               localParticipant={false}
               participant={participant} />
-          })
+          )
         }
       </div>
       <button id="leaveRoom" onClick={props.returnToLobby}>Leave Room</button>
