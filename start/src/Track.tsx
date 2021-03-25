@@ -10,7 +10,7 @@ function Track(props : {track : AudioTrack | VideoTrack}) {
       ref.classList.add(props.track.kind);
       ref.appendChild(child);
     }
-  });
+  }, []);
   
   return (
     <div className="track" ref={(node : HTMLDivElement) => ref = node}></div>

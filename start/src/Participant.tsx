@@ -12,17 +12,17 @@ function Participant(props: { localParticipant: boolean, participant: LocalParti
   useEffect(() => {
     if (!props.localParticipant) {
       props.participant.on('trackSubscribed', track => {
-        setTracks([...tracks, track]);
+        setTracks(prevState => ([...prevState, track]));
       });
     }
-  })
+  }, [])
 
   return (
     <div className="participant" id={props.participant.identity}>
       <div className="identity">{props.participant.identity}</div>
       {
         tracks.map((track) =>
-          <Track key={track!.name} track={(track as VideoTrack | AudioTrack)!} />)
+          <Track key={track!.name} track={(track as VideoTrack | AudioTrack)} />)
       }
     </div>
   )

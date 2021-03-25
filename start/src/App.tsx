@@ -25,14 +25,13 @@ function App() {
               disabled={identity === '' ? true : false}
               onClick={async () => {
                 try {
-                  const response = await fetch(`https://{your-endpoint}?identity=${identity}`);
+                  const response = await fetch(`/token?identity=${identity}`);
                   const data = await response.json();
                   const room = await connect(data.accessToken, {
                     name: 'cool-room',
                     audio: true,
                     video: true
                   });
-
                   setRoom(room);
                 } catch (err) {
                   console.log(err);
