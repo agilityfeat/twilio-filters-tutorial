@@ -1,0 +1,151 @@
+.app {
+  padding: 1%;
+  width: 100%;
+  box-sizing: border-box;
+  font-weight: bold;
+  font-size: 1.5em;
+  background-size: cover;
+  position: fixed;
+  overflow: scroll;
+  top: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.lobby {
+  margin-top: 100px;
+  text-align: center;
+  font-size: 1.25em;
+}
+
+.participants {
+  width: 100%;
+  overflow: hidden;
+  -webkit-column-count: 3;
+  -webkit-column-gap: 1.875em;
+  -webkit-column-fill: auto;
+  -moz-column-count: 3;
+  -moz-column-gap: 1.875em;
+  -moz-column-fill: auto;
+  column-count: 3;
+  column-gap: 1.875em;
+  column-fill: auto;
+}
+
+.participant {
+  overflow: hidden;
+  -webkit-mask-image: -webkit-radial-gradient(white, black); 
+  position: relative;
+  border-radius: 8px;
+  box-sizing: border-box;
+  margin-bottom: 1.875em;
+  -webkit-column-break-inside: avoid;
+  -moz-column-break-inside: avoid;
+}
+
+.identity {
+  position: absolute;
+  left: 0px;
+  bottom: 15px;
+  color: white;
+  padding-left: 15px;
+  box-sizing: border-box;
+  z-index: 50;
+}
+
+video {
+  display: block;
+  -webkit-transform: scale(-1, 1);
+  transform: scale(-1, 1);
+  width: 100%;
+}
+
+button {
+  background-color: #0188fedb;
+  font-weight: bold;
+  display: block;
+  margin: 0 auto;
+  color: white;
+  border: none;
+  padding: 15px;
+  border-radius: 5px;
+  width: 200px;
+  cursor: pointer;
+  font-size: 1em;
+}
+
+button:disabled {
+  opacity: .4;
+  cursor:initial;
+}
+
+#leaveRoom {
+  margin-top: 25px;
+  margin-left: 0;
+}
+
+input {
+  padding-bottom: 5px;
+  border: none;
+  outline: none;
+  border-bottom: 2px solid #0188fedb;
+  margin-bottom: 25px;
+  width: 300px;
+  font-size: 1em;
+  text-align: center;
+  border-radius: 0;
+  background-color: rgba(255,255,255,0);
+}
+
+@media (max-width: 1023px) {
+  .participants {
+    -webkit-column-count: 2;
+    -moz-column-count: 2;
+    column-count: 2;
+  }
+}
+
+@media (max-width: 767px) {
+  .app {
+    padding: 0;
+  }
+
+  .participants {
+    width: 100%;
+    overflow: hidden;
+    -webkit-column-count: 1;
+    -webkit-column-gap: 1.875em;
+    -webkit-column-fill: auto;
+    -moz-column-count: 1;
+    -moz-column-gap: 1.875em;
+    -moz-column-fill: auto;
+    column-count: 1;
+    column-gap: 1.875em;
+    column-fill: auto;
+  }
+
+  .participant, .dominantSpeaker:before {
+    border-radius: 0;
+  }
+
+  #leaveRoom {
+    margin: 0 auto;
+  }
+
+  @media (orientation:landscape) {
+    .app {
+      padding: 15px;
+    }
+
+    .participants {
+      -webkit-column-count: 2;
+      -moz-column-count: 2;
+      column-count: 2;
+    }
+
+    participant {
+      border-radius: 8px;
+    }
+  }
+
+}
