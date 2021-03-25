@@ -15,9 +15,7 @@ function Room(props: { room: RoomType; returnToLobby: () => void; }) {
       setRemoteParticipants(prevState => prevState.filter(p => p.identity !== participant.identity));
     });
     window.addEventListener('beforeunload', props.returnToLobby);
-  }, []);
 
-  useEffect(() => {
     return props.returnToLobby
   }, []);
 

@@ -61,7 +61,7 @@ video {
 }
 
 button {
-  background-color: #fe019a;
+  background-color: #0188fedb;
   font-weight: bold;
   display: block;
   margin: 0 auto;
@@ -88,7 +88,7 @@ input {
   padding-bottom: 5px;
   border: none;
   outline: none;
-  border-bottom: 2px solid #fe019a;
+  border-bottom: 2px solid #0188fedb;
   margin-bottom: 25px;
   width: 300px;
   font-size: 1em;
