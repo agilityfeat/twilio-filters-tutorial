@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
-import { connect, Room as RoomType } from 'twilio-video';
+import React, { useEffect, useRef, useState } from 'react';
+import { connect, createLocalVideoTrack, Room as RoomType } from 'twilio-video';
+import * as faceapi from '@vladmandic/face-api';
 import Room from './Room';
 import './App.css';
+import { CanvasElement } from './types';
 
 function App() {
   const [identity, setIdentity] = useState('');
@@ -29,8 +31,7 @@ function App() {
                   const data = await response.json();
                   const room = await connect(data.accessToken, {
                     name: 'cool-room',
-                    audio: true,
-                    video: true
+                    video: { width: 640, height: 480 }
                   });
                   setRoom(room);
                 } catch (err) {
