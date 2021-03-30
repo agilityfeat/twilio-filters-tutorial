@@ -18,10 +18,10 @@ function Track(props: { track: AudioTrack | VideoTrack }) {
       image.src = 'sunglasses.png';
 
       async function step() {
-        console.log('mylog:', 'step');
         const results = await faceapi.detectAllFaces(localVideoRef.current);
         ctx?.drawImage(localVideoRef.current!, 0, 0);
-        results.map(result => {
+        // eslint-disable-next-line array-callback-return
+        results.map((result) => {
           ctx?.drawImage(
             image,
             result.box.x + 15,
@@ -45,11 +45,6 @@ function Track(props: { track: AudioTrack | VideoTrack }) {
             localVideoRef.current?.addEventListener('playing', drawFilter);
     
             divRef.current?.appendChild(canvasRef.current);
-    
-            return () => {
-              localVideoRef.current?.removeEventListener('playing', drawFilter);
-              cancelAnimationFrame(requestRef.current!);
-            }
           } else {
             const child = props.track.attach();
             divRef.current?.appendChild(child);
@@ -57,6 +52,14 @@ function Track(props: { track: AudioTrack | VideoTrack }) {
         };
       });
     });
+
+    return () => {
+      if (props.track && props.track.kind === 'video'){
+        localVideoRef.current?.removeEventListener('playing', drawFilter);
+        cancelAnimationFrame(requestRef.current!);
+      }
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

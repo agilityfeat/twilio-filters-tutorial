@@ -17,6 +17,7 @@ function Room(props: { room: RoomType; returnToLobby: () => void; }) {
     window.addEventListener('beforeunload', props.returnToLobby);
 
     return props.returnToLobby
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
