@@ -1,19 +1,20 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { AudioTrack, VideoTrack } from 'twilio-video';
 
-function Track(props : {track : AudioTrack | VideoTrack}) {
-  let ref : HTMLDivElement
+function Track(props: { track: AudioTrack | VideoTrack }) {
+  let divRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (props.track !== null) {
       const child = props.track.attach();
-      ref.classList.add(props.track.kind);
-      ref.appendChild(child);
+      divRef.current?.classList.add(props.track.kind);
+      divRef.current?.appendChild(child);
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   
   return (
-    <div className="track" ref={(node : HTMLDivElement) => ref = node}></div>
+    <div className="track" ref={divRef}></div>
   );
 }
 

@@ -41,6 +41,7 @@
   margin-bottom: 1.875em;
   -webkit-column-break-inside: avoid;
   -moz-column-break-inside: avoid;
+  column-break-inside: avoid;
 }
 
 .identity {
@@ -58,6 +59,43 @@ video {
   -webkit-transform: scale(-1, 1);
   transform: scale(-1, 1);
   width: 100%;
+}
+
+.dominantSpeaker:before {
+  z-index: 20;
+  border: 5px solid #ff7878;
+  content: "";
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  box-sizing: border-box;
+  border-radius: 8px;
+}
+
+.avControl {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  z-index: 20;
+  color: white;
+  opacity: .6;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.avControl:hover {
+  opacity: 1;
+}
+
+.fa-microphone-slash, .fa-video-slash {
+  color: red;
+}
+
+.video .avControl {
+  margin-top: 45px;
 }
 
 button {

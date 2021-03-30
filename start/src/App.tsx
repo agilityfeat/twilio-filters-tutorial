@@ -8,7 +8,7 @@ function App() {
   const [room, setRoom] = useState<RoomType>();
 
   return (
-    <div className="App">
+    <div className="app">
       {
         room === undefined
           ? <div className="lobby">
@@ -30,7 +30,7 @@ function App() {
                   const room = await connect(data.accessToken, {
                     name: 'cool-room',
                     audio: true,
-                    video: true
+                    video: { width: 640, height: 480 }
                   });
                   setRoom(room);
                 } catch (err) {

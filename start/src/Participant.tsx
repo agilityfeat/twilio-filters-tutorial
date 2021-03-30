@@ -15,6 +15,7 @@ function Participant(props: { localParticipant: boolean, participant: LocalParti
         setTracks(prevState => ([...prevState, track]));
       });
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (
