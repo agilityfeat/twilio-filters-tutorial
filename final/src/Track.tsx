@@ -3,6 +3,7 @@ import { AudioTrack, VideoTrack, DataTrack } from 'twilio-video';
 import * as faceapi from '@vladmandic/face-api';
 
 function Track(props: { track: AudioTrack | VideoTrack | DataTrack, filter: string, setFilter: (filter: string) => void }) {
+  
   let divRef = useRef<HTMLDivElement>(null);
   let canvasRef = useRef<HTMLCanvasElement>(null);
   let localAudioRef = useRef<HTMLAudioElement | null>(null);
@@ -35,6 +36,7 @@ function Track(props: { track: AudioTrack | VideoTrack | DataTrack, filter: stri
     }
 
     if (props.track) {
+      divRef.current?.classList.add(props.track.kind);
       switch (props.track.kind) {
         case 'audio':
           localAudioRef.current = props.track.attach();
@@ -43,8 +45,9 @@ function Track(props: { track: AudioTrack | VideoTrack | DataTrack, filter: stri
           props.track.on('message', props.setFilter);
           break;
         case 'video':
-          localVideoRef.current = props.track.attach() as HTMLVideoElement;
+          localVideoRef.current = props.track.attach();
           localVideoRef.current?.addEventListener('playing', drawFilter);
+          break;
       }
     }
 
