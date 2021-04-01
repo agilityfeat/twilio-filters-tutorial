@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { connect, Room as RoomType } from 'twilio-video';
+import { connect, Room as RoomType, LocalDataTrack } from 'twilio-video';
+import * as faceapi from '@vladmandic/face-api';
 import Room from './Room';
 import './App.css';
 
@@ -32,6 +33,12 @@ function App() {
                     audio: true,
                     video: { width: 640, height: 480 }
                   });
+
+                  const localDataTrack = new LocalDataTrack();
+                  await room.localParticipant.publishTrack(localDataTrack);
+                  await faceapi.nets.ssdMobilenetv1.loadFromUri('/model');
+                  await faceapi.nets.faceRecognitionNet.loadFromUri('/model')
+
                   setRoom(room);
                 } catch (err) {
                   console.log(err);

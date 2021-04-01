@@ -135,6 +135,33 @@ input {
   background-color: rgba(255,255,255,0);
 }
 
+.filterMenu {
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+  z-index: 10;
+  color: white;
+}
+
+.icon {
+  margin-bottom: 5px;
+  cursor: pointer;
+}
+
+canvas {
+  display: block;
+  -webkit-transform: scale(-1, 1);
+  transform: scale(-1, 1);
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  left: 0;
+  border-radius: 8px;
+  overflow: hidden;
+  z-index: 5;
+}
+
 @media (max-width: 1023px) {
   .participants {
     -webkit-column-count: 2;
